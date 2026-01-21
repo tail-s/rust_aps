@@ -1,0 +1,25 @@
+use std::io;
+
+fn main() {
+    let mut i1 = String::new();
+    let mut i2 = String::new();
+    io::stdin().read_line(&mut i1).unwrap();
+    io::stdin().read_line(&mut i2).unwrap();
+    
+    let i1 = format!("{} {}", i1, i2);
+    let input: Vec<u32> = i1
+        .trim()
+        .split_whitespace()
+        .map(|x| x.parse().expect("err"))
+        .collect();
+    let a = input[1] % 10;
+    let b = (input[1] % 100 - a) / 10;
+    let c = (input[1] - 10 * b - a) / 100;
+    
+    println!("{}", input[0] * a);
+    println!("{}", input[0] * b);
+    println!("{}", input[0] * c);
+    println!("{}", input[0] * input[1]);
+    
+    
+}
