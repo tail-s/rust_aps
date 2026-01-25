@@ -1,0 +1,38 @@
+fn main() {
+    let stdin = std::io::stdin();
+    let mut buf = String::new();
+    stdin.read_line(&mut buf).unwrap();
+    let buf: Vec<u32> = buf
+        .trim()
+        .split_whitespace()
+        .map(|x| x.parse().expect("err"))
+        .collect();
+    
+    let max_val = buf.iter().max();
+    
+    let mut cnt = 0;
+    let mut ans = 0;
+    let mut val = 0;
+    
+    for i in 0..buf.len() {
+        for j in (i + 1)..buf.len() {
+            if buf[i] == buf[j] {
+                cnt += 1;
+                val = buf[j];
+            }
+        }
+    }
+    
+    if cnt == 3 {
+        ans = 10000 + (buf[0] * 1000);
+        print!("{}", ans);
+    } else if cnt == 1 {
+        ans = 1000 + (val * 100);
+        print!("{}", ans);
+    } else if cnt == 0 {
+        match max_val {
+            Some(&max) => print!("{}", max * 100),
+            None => print!("Empty"),
+        }
+    }
+}
