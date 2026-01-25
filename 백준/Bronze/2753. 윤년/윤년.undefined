@@ -1,0 +1,13 @@
+use std::io;
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let input = input.trim().parse::<u32>().unwrap();
+    
+    if (input % 4 == 0 && input % 100 != 0) || input % 400 == 0 {
+        print!("1");
+    } else {
+        print!("0");
+    }
+}
