@@ -1,0 +1,11 @@
+fn main() {
+    let stdin = std::io::stdin();
+    let mut n = String::new();
+    stdin.read_line(&mut n).unwrap();
+    let n = n.trim().parse::<u32>().unwrap();
+    
+    for i in 1..10 {
+        println!("{n} * {i} = {}", n * i);
+    }
+    
+}
