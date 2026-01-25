@@ -1,0 +1,16 @@
+fn main() {
+    let stdin = std::io::stdin();
+    let mut buf = String::new();
+    stdin.read_line(&mut buf).unwrap();
+    stdin.read_line(&mut buf).unwrap();
+    let mut iter = buf
+        .trim()
+        .split_whitespace()
+        .map(|x| x.parse::<u32>().unwrap());
+    let mut sum = iter.next().unwrap() * 60;
+    sum += iter.next().unwrap();
+    sum += iter.next().unwrap();
+    sum %= 24 * 60;
+    
+    print!("{} {}", sum / 60, sum % 60);
+}
