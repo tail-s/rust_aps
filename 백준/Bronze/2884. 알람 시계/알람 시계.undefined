@@ -1,0 +1,15 @@
+fn main() {
+    let stdin = std::io::stdin();
+    let mut buf = String::new();
+    stdin.read_line(&mut buf).unwrap();
+    let mut iter = buf.trim().split_whitespace().map(|x| x.parse::<i32>().unwrap());
+    let H = iter.next().unwrap();
+    let M = iter.next().unwrap();
+    
+    let mut sum = H * 60 + M - 45;
+    if sum < 0 {
+        sum += 24 * 60;
+    }
+    sum %= 24 * 60;
+    print!("{} {}", sum / 60, sum % 60);
+}
