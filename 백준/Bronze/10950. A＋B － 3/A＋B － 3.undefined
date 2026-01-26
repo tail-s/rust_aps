@@ -4,7 +4,7 @@ fn main() {
     stdin.read_line(&mut t).unwrap();
     let t: u32 = t.trim().parse().unwrap();
     
-    for i in 1..=t {
+    for _ in 0..t {
         let mut buf = String::new();
         stdin.read_line(&mut buf).unwrap();
         let buf: Vec<u32> = buf
