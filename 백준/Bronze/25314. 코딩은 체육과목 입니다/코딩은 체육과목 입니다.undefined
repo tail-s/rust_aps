@@ -1,0 +1,13 @@
+fn main() {
+    let stdin = std::io::stdin();
+    let mut n = String::new();
+    let mut ans = String::new();
+    stdin.read_line(&mut n).unwrap();
+    let n = n.trim().parse::<u32>().unwrap();
+    
+    for _ in 0..n/4 {
+        ans.push_str("long ");
+    }
+    ans.push_str("int");
+    print!("{ans}");    
+}
