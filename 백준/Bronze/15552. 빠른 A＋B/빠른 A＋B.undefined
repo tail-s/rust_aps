@@ -1,26 +1,25 @@
-use std::io::{self, BufRead, Write};
+use std::io::{self, Read, Write};
 
 fn main() {
-    let stdin = io::stdin();
-    let stdout = io::stdout();
-    
-    let mut stdin_lock = stdin.lock();
-    let mut stdout_lock = io::BufWriter::new(stdout.lock());
-    
-    let mut first_line = String::new();
-    stdin_lock.read_line(&mut first_line).unwrap();
-    let t: usize = first_line.trim().parse().unwrap();
-    
+    // 입력 전체를 문자열로 읽기
+    let mut input = String::new();
+    io::stdin().read_to_string(&mut input).unwrap();
+    let mut iter = input.split_whitespace();
+
+    // 출력 버퍼
+    let mut output = String::new();
+
+    // 예시: 첫 값이 테스트 케이스 수
+    let t: usize = iter.next().unwrap().parse().unwrap();
+
     for _ in 0..t {
-        let mut line = String::new();
-        stdin_lock.read_line(&mut line).unwrap();
-        
-        let nums: Vec<i32> = line
-            .split_whitespace()
-            .map(|s| s.parse().unwrap())
-            .collect();
-        
-        writeln!(stdout_lock, "{}", nums[0] + nums[1]).unwrap();
+        let a: i32 = iter.next().unwrap().parse().unwrap();
+        let b: i32 = iter.next().unwrap().parse().unwrap();
+        output.push_str(&(a + b).to_string());
+        output.push('\n');
     }
-    stdout_lock.flush().unwrap();
+
+    // 한 번에 출력
+    let mut stdout = io::BufWriter::new(io::stdout());
+    write!(stdout, "{}", output).unwrap();
 }
