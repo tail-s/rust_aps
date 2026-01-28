@@ -1,0 +1,26 @@
+use std::io::{self, BufRead, Write};
+
+fn main() {
+    let stdin = io::stdin();
+    let stdout = io::stdout();
+    
+    let mut stdin_lock = stdin.lock();
+    let mut stdout_lock = io::BufWriter::new(stdout.lock());
+    
+    let mut first_line = String::new();
+    stdin_lock.read_line(&mut first_line).unwrap();
+    let t: usize = first_line.trim().parse().unwrap();
+    
+    for _ in 0..t {
+        let mut line = String::new();
+        stdin_lock.read_line(&mut line).unwrap();
+        
+        let nums: Vec<i32> = line
+            .split_whitespace()
+            .map(|s| s.parse().unwrap())
+            .collect();
+        
+        writeln!(stdout_lock, "{}", nums[0] + nums[1]).unwrap();
+    }
+    stdout_lock.flush().unwrap();
+}
