@@ -1,0 +1,19 @@
+use std::io::{self, Read};
+use std::fmt::Write as _;
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_to_string(&mut input).unwrap();
+    let mut iter = input.split_whitespace();
+
+    let t: usize = iter.next().unwrap().parse().unwrap();
+    let mut output = String::new();
+
+    for i in 1..=t {
+        let a: i32 = iter.next().unwrap().parse().unwrap();
+        let b: i32 = iter.next().unwrap().parse().unwrap();
+        writeln!(output, "Case #{}: {} + {} = {}", i, a, b, a + b).unwrap();
+    }
+
+    print!("{}", output);
+}
